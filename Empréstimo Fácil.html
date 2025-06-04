@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Empr&eacute;stimo F&aacute;cil</title>
+
+
+  <style>
+body {
+background-color: #fff;
+color: #333;
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+}
+.container {
+max-width: 600px;
+margin: 0 auto;
+padding: 2rem;
+}
+.btn {
+display: inline-block;
+padding: 10px 20px;
+background-color: #28a745;
+color: #fff;
+text-decoration: none;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+margin-top: 1rem;
+}
+input, textarea {
+width: 100%;
+padding: 10px;
+margin: 0.5rem 0;
+border: 1px solid #ccc;
+border-radius: 5px;
+}
+.hidden {
+display: none;
+}
+  </style>
+</head>
+<body>
+
+<div class="container" id="page1">
+<h1>Empr&eacute;stimo Facilitado</h1>
+
+<p>Sem burocracia, valor de R$7.500,00 dispon&iacute;vel imediatamente!</p>
+
+<button class="btn" onclick="goToPage(2)">Contratar Agora</button>
+</div>
+
+<div class="container hidden" id="page2">
+<h2>Formul&aacute;rio de Solicita&ccedil;&atilde;o</h2>
+
+<form id="loanForm">
+  <input placeholder="Nome Completo" required="" type="text">
+  <input placeholder="CPF" required="" type="text">
+  <input placeholder="RG" required="" type="text">
+  <input placeholder="Endere&ccedil;o" required="" type="text">
+  <input placeholder="Chave PIX" required="" type="text">
+  <h3>Termo de contrata&ccedil;&atilde;o de seguro fian&ccedil;a:</h3>
+
+  <p>Ao prosseguir, voc&ecirc; concorda com a contrata&ccedil;&atilde;o de um seguro fian&ccedil;a obrigat&oacute;rio.</p>
+
+  <label><input required="" type="checkbox"> Li e aceito os termos</label>
+  <button class="btn" type="button" onclick="goToPage(3)">Enviar</button>
+</form>
+
+</div>
+
+<div class="container hidden" id="page3">
+<h2>Sobre o Seguro Fian&ccedil;a</h2>
+
+<p>Para validar sua solicita&ccedil;&atilde;o, &eacute; necess&aacute;rio contratar um seguro fian&ccedil;a no valor de R$9,50.</p>
+
+<p>Sua chave de pagamento &eacute;: <strong id="randomKey"></strong></p>
+
+<input accept="image/*,application/pdf" type="file">
+<p>Ap&oacute;s o envio, entraremos em contato com voc&ecirc;.</p>
+
+</div>
+
+<script>
+function goToPage(pageNumber) {
+document.querySelectorAll('.container').forEach(div => div.classList.add('hidden'));
+document.getElementById(`page${pageNumber}`).classList.remove('hidden');
+if (pageNumber === 3) {
+document.getElementById('randomKey').innerText = generatePixKey();
+}
+}
+function generatePixKey() {
+return Math.random().toString(36).substring(2, 10).toUpperCase();
+}
+</script>
+</body>
+</html>
